@@ -7,15 +7,18 @@
 {% block content %}
 
 <h1>Добавление новой записи</h1>
-
+<h3>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">ЗАПИСАТЬ</button>
 </form>
+</h3>
     {% if b %}
-        <h2> {{ b }}</h2>
+        <h1> {{ b }}</h1>
     {% endif %}
+
+
     {% if a %}
 <table>
 
@@ -45,13 +48,16 @@
           {% endif %}
       </td>
       <td>{{ a.number }}</td>
-      <td>{{ a.diametr }}</td>
+      <td>R{{ a.diametr }}</td>
       <td>
           {% if a.complex %}
           Ком-{{ a.complex }}
           {% endif %}
           {% if a.balance %}
           Баланс-{{ a.balance }}
+          {% endif %}
+           {% if a.count_gruz %}
+          Пл-{{ a.count_gruz }}
           {% endif %}
           {% if a.sn %}
           Сн-{{ a.sn }}

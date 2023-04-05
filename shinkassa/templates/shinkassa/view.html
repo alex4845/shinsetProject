@@ -7,6 +7,19 @@
 {% block content %}
 
 <h1>Просмотр записей за выбранный период</h1>
+<h2>
+<form class="d-flex" method="post">
+        {%  csrf_token %}
+        <p>C какой даты смотреть__<input class="form-control me-2" type="date" placeholder="выберите дату" name="date1"></p>
+        <p>По какую дату смотреть__<input class="form-control me-2" type="date" placeholder="выберите дату" name="date2"></p>
+
+        <input type="submit" value="Посмотреть за выбранный период" name="period">
+        <input type="submit" value="Посмотреть за сегодня" name="today">
+
+    </form>
+
+</h2>
+
 <table>
 
   <tr>
@@ -15,7 +28,7 @@
       <th>___Номер___</th>
       <th>_Диск_</th>
       <th>_______________Что делали_______________ </th>
-      <th>______Время___________</th>
+      <th>____Дата_____</th>
       <th>__Сумма__</th>
   </tr>
 {% for i in a %}
@@ -41,13 +54,16 @@
           -----
           {% endif %}
       </td>
-      <td>{{ i.diametr }}</td>
+      <td>R{{ i.diametr }}</td>
       <td>
           {% if i.complex %}
           Ком-{{ i.complex }}
           {% endif %}
           {% if i.balance %}
           Баланс-{{ i.balance }}
+          {% endif %}
+          {% if i.count_gruz %}
+          Пл-{{ i.count_gruz }}
           {% endif %}
           {% if i.sn %}
           Сн-{{ i.sn }}

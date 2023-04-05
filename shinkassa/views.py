@@ -1,6 +1,7 @@
 from datetime import date, datetime
 
 from django.shortcuts import render, redirect
+from django.utils import timezone
 
 from shinkassa.models import Worktable
 
@@ -22,30 +23,45 @@ def add(request):
             form.save()
 
             a = Worktable.objects.last()
-            if a.diametr == "22.5" or a.diametr == "17,5" or a.diametr == "22,5":
+            if a.diametr == "22.5" or a.diametr == "17,5" or a.diametr == "22,5" or a.diametr == "17.5" or a.diametr == "19.5" or a.diametr == "19,5":
                 n = [32, 16, 0, 8, 8, 8, 8, 1]
             if a.diametr == "13" or a.diametr == "14":
                 n = [8, 3, 2.5, 2, 2, 2, 2, 1]
             if a.diametr == "15" or a.diametr == "16":
                 n = [10, 3.5, 2.5, 2.5, 2.5, 2.5, 2.5, 1]
             if a.diametr == "15c" or a.diametr == "16с":
-                n = [12, 4, 2.5, 3, 3, 3, 3, 1]
+                n = [15, 4, 2.5, 4, 4, 3.5, 3.5, 1]
+            if a.diametr == "17" or a.diametr == "18":
+                n = [13, 4, 2.5, 3, 3, 3.5, 3.5, 1]
+            if a.diametr == "19" or a.diametr == "20":
+                n = [16, 4, 2.5, 3.5, 3.5, 4, 4, 1]
+            if a.diametr == "20к":
+                n = [60, 30, 2.5, 15, 15, 15, 15, 1]
             s = [a.complex, a.balance, a.count_gruz, a.sn, a.ust, a.mont, a.demont, a.cost_appworks]
             sum = 0
             for i in range(len(s)):
                 if s[i]:
                     sum = sum + s[i] * n[i]
             a.summ = sum
-            a.time = datetime.now().strftime("%Y-%m-%d %H:%M")
+            a.time = date.today()
             a.save()
-
             b = "Записано"
             return render(request, "shinkassa/add.html", {"form": form, "b": b, "a": a})
 
 def views(request):
-    a = Worktable.objects.all()
-    s = 0
-    for i in a:
-        s = s + i.summ
+    if request.method == "GET":
+        return render(request, "shinkassa/view.html")
 
-    return render(request, "shinkassa/view.html", {"a": a, "s": s})
+    if request.method == "POST":
+
+        date1 = request.POST["date1"]
+        date2 = request.POST["date2"]
+        a = Worktable.objects.filter(time__range=(date1, date2))
+        if "today" in request.POST:
+            a = Worktable.objects.filter(time=date.today())
+
+        s = 0
+        for i in a:
+            s = s + i.summ
+        return render(request, "shinkassa/view.html", {"a": a, "s": s})
+

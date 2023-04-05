@@ -8,3 +8,17 @@ class WorktableForm(forms.ModelForm):
         fields = ['company', 'vehicle', 'number', 'diametr', 'complex', 'balance', 'count_gruz',
                   'sn', 'ust', 'mont', 'demont', 'appworks', 'cost_appworks'
                   ]
+        labels = {'company': 'Фирма',
+                  'vehicle': 'Машина(марка)',
+                  'number': 'Номер',
+                  'diametr': 'Размер диска',
+                  'complex': 'Комплекс',
+                  'balance': 'Балансировка',
+                  'count_gruz': 'Кол-во клеящ. пластин',
+                  'sn': 'Снятие',
+                  'ust': 'Установка',
+                  'mont': 'Монтаж',
+                  'demont': 'Демонтаж',
+                  'appworks': 'Дополнительная работа',
+                  'cost_appworks': 'Стоимость доп. работы'
+                  }
