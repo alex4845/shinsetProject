@@ -1,0 +1,22 @@
+
+{% extends 'shinkassa/base.html'%}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+
+
+<h2>Программа записи машин ООО "Шинсеть"</h2>
+ <div>
+     <h1>
+
+       <a class="nav-link active" href="{% url 'Добавление записи' %}">ДОБАВИТЬ ЗАПИСЬ</a>
+     ------
+      <a class="nav-link active" href="{% url 'Просмотр' %}">ПОСМОТРЕТЬ ЗАПИСИ</a>
+ </h1>
+ </div>
+
+{% endblock %}
+

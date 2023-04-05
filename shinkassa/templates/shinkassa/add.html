@@ -1,0 +1,84 @@
+{% extends 'shinkassa/base.html'%}
+
+{% block title %}
+Добавление записи
+{% endblock %}
+
+{% block content %}
+
+<h1>Добавление новой записи</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ЗАПИСАТЬ</button>
+</form>
+    {% if b %}
+        <h2> {{ b }}</h2>
+    {% endif %}
+    {% if a %}
+<table>
+
+  <tr>
+      <th>_______Фирма_______</th>
+      <th>___Машина___</th>
+      <th>___Номер___</th>
+      <th>_Диск_</th>
+      <th>_______________Что делали_______________ </th>
+      <th>______Время___________</th>
+      <th>__Сумма__</th>
+  </tr>
+
+  <tr>
+      <td>
+          {% if a.company %}
+          {{ a.company }}
+          {% else %}
+          -----
+          {% endif %}
+      </td>
+      <td>
+          {% if a.vehicle %}
+          {{ a.vehicle }}
+          {% else %}
+          без машины
+          {% endif %}
+      </td>
+      <td>{{ a.number }}</td>
+      <td>{{ a.diametr }}</td>
+      <td>
+          {% if a.complex %}
+          Ком-{{ a.complex }}
+          {% endif %}
+          {% if a.balance %}
+          Баланс-{{ a.balance }}
+          {% endif %}
+          {% if a.sn %}
+          Сн-{{ a.sn }}
+          {% endif %}
+          {% if a.ust %}
+          Уст-{{ a.ust }}
+          {% endif %}
+          {% if a.mont %}
+          Мон-{{ a.mont }}
+          {% endif %}
+          {% if a.demont %}
+          Дем-{{ a.demont }}
+          {% endif %}
+          {% if a.appworks %}
+          {{ a.appworks }}
+          {% endif %}
+
+      </td>
+
+      <td>{{ a.time }}</td>
+
+      <td>{{ a.summ }} руб</td>
+  </tr>
+
+
+</table>
+    {% endif %}
+
+
+{% endblock %}

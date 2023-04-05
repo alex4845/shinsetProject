@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>base</title>
+<h2>
+    <a href="{% url 'Главная' %}">Главная</a>  -------
+    <a class="nav-link active" href="{% url 'Добавление записи' %}">Добавить запись</a> ---------
+    <a class="nav-link active" href="{% url 'Просмотр' %}">Смотреть записи</a>
+    </h2>
+</head>
+<body>
+  {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

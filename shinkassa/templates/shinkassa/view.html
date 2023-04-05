@@ -1,0 +1,80 @@
+{% extends 'shinkassa/base.html'%}
+
+{% block title %}
+Просмотр
+{% endblock %}
+
+{% block content %}
+
+<h1>Просмотр записей за выбранный период</h1>
+<table>
+
+  <tr>
+      <th>_______Фирма_______</th>
+      <th>___Машина___</th>
+      <th>___Номер___</th>
+      <th>_Диск_</th>
+      <th>_______________Что делали_______________ </th>
+      <th>______Время___________</th>
+      <th>__Сумма__</th>
+  </tr>
+{% for i in a %}
+  <tr>
+      <td>
+          {% if i.company %}
+          {{ i.company }}
+          {% else %}
+          -----
+          {% endif %}
+      </td>
+      <td>
+          {% if i.vehicle %}
+          {{ i.vehicle }}
+          {% else %}
+          без машины
+          {% endif %}
+      </td>
+      <td>
+          {% if i.number %}
+          {{ i.number }}
+          {% else %}
+          -----
+          {% endif %}
+      </td>
+      <td>{{ i.diametr }}</td>
+      <td>
+          {% if i.complex %}
+          Ком-{{ i.complex }}
+          {% endif %}
+          {% if i.balance %}
+          Баланс-{{ i.balance }}
+          {% endif %}
+          {% if i.sn %}
+          Сн-{{ i.sn }}
+          {% endif %}
+          {% if i.ust %}
+          Уст-{{ i.ust }}
+          {% endif %}
+          {% if i.mont %}
+          Мон-{{ i.mont }}
+          {% endif %}
+          {% if i.demont %}
+          Дем-{{ i.demont }}
+          {% endif %}
+          {% if i.appworks %}
+          {{ i.appworks }}
+          {% endif %}
+
+      </td>
+
+      <td>{{ i.time }}</td>
+
+      <td>{{ i.summ }} руб</td>
+  </tr>
+    {% endfor %}
+
+</table>
+
+<h2>___________________________________________________________________Общая сумма {{ s }}</h2>
+
+{% endblock %}
