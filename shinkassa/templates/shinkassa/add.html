@@ -7,13 +7,13 @@
 {% block content %}
 
 <h1>Добавление новой записи</h1>
-<h3>
+<h4>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_ul }}
     <button type="submit">ЗАПИСАТЬ</button>
 </form>
-</h3>
+</h4>
     {% if b %}
         <h1> {{ b }}</h1>
     {% endif %}
@@ -30,6 +30,7 @@
       <th>_______________Что делали_______________ </th>
       <th>______Время___________</th>
       <th>__Сумма__</th>
+      <th>Примечание</th>
   </tr>
 
   <tr>
@@ -78,8 +79,8 @@
       </td>
 
       <td>{{ a.time }}</td>
-
       <td>{{ a.summ }} руб</td>
+      <td>{{ a.prim }}</td>
   </tr>
 
 

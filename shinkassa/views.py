@@ -1,7 +1,6 @@
-from datetime import date, datetime
-
+from datetime import date
+import datetime
 from django.shortcuts import render, redirect
-from django.utils import timezone
 
 from shinkassa.models import Worktable
 
@@ -44,8 +43,9 @@ def add(request):
                     sum = sum + s[i] * n[i]
             a.summ = sum
             a.time = date.today()
+            a.times = datetime.datetime.now().time().strftime("%H:%M")
             a.save()
-            b = "Записано"
+            b = "ЗАПИСАНО!"
             return render(request, "shinkassa/add.html", {"form": form, "b": b, "a": a})
 
 def views(request):
@@ -56,9 +56,12 @@ def views(request):
 
         date1 = request.POST["date1"]
         date2 = request.POST["date2"]
-        a = Worktable.objects.filter(time__range=(date1, date2))
+        word_s = request.POST["word_s"]
+        a = Worktable.objects.filter(time__range=(date1, date2)).filter(company__contains=word_s)
+
         if "today" in request.POST:
             a = Worktable.objects.filter(time=date.today())
+
 
         s = 0
         for i in a:

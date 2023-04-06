@@ -6,7 +6,7 @@ class WorktableForm(forms.ModelForm):
     class Meta:
         model = Worktable
         fields = ['company', 'vehicle', 'number', 'diametr', 'complex', 'balance', 'count_gruz',
-                  'sn', 'ust', 'mont', 'demont', 'appworks', 'cost_appworks'
+                  'sn', 'ust', 'mont', 'demont', 'appworks', 'cost_appworks', 'prim'
                   ]
         labels = {'company': 'Фирма',
                   'vehicle': 'Машина(марка)',
@@ -20,5 +20,7 @@ class WorktableForm(forms.ModelForm):
                   'mont': 'Монтаж',
                   'demont': 'Демонтаж',
                   'appworks': 'Дополнительная работа',
-                  'cost_appworks': 'Стоимость доп. работы'
+                  'cost_appworks': 'Стоимость доп. работы',
+                  'prim': 'Примечание'
+
                   }

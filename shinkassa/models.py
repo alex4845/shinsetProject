@@ -17,8 +17,9 @@ class Worktable(models.Model):
     appworks = models.CharField(max_length=50, null=True, blank=True)
     cost_appworks = models.FloatField(max_length=10, null=True, blank=True, default=0)
     time = models.CharField(max_length=20, blank=True, null=True)
+    times = models.CharField(max_length=15, blank=True, null=True)
     summ = models.FloatField(max_length=10, null=True, blank=True, default=0)
-
+    prim = models.CharField(max_length=15, blank=True, null=True)
     def __str__(self):
         return self.diametr
 

@@ -6,12 +6,13 @@
 
 {% block content %}
 
-<h1>Просмотр записей за выбранный период</h1>
+<h1>Просмотр и поиск записей за выбранный период</h1>
 <h2>
 <form class="d-flex" method="post">
         {%  csrf_token %}
         <p>C какой даты смотреть__<input class="form-control me-2" type="date" placeholder="выберите дату" name="date1"></p>
         <p>По какую дату смотреть__<input class="form-control me-2" type="date" placeholder="выберите дату" name="date2"></p>
+        <p>Поиск по фирме__<input class="form-control me-2" type="text" placeholder="введите название фирмы" name="word_s"></p>
 
         <input type="submit" value="Посмотреть за выбранный период" name="period">
         <input type="submit" value="Посмотреть за сегодня" name="today">
@@ -24,12 +25,14 @@
 
   <tr>
       <th>_______Фирма_______</th>
-      <th>___Машина___</th>
-      <th>___Номер___</th>
+      <th>_Машина___</th>
+      <th>___Номер____</th>
       <th>_Диск_</th>
       <th>_______________Что делали_______________ </th>
-      <th>____Дата_____</th>
-      <th>__Сумма__</th>
+      <th>____Дата___</th>
+      <th>Время__</th>
+      <th>___Сумма__</th>
+      <th>Примечание</th>
   </tr>
 {% for i in a %}
   <tr>
@@ -84,8 +87,9 @@
       </td>
 
       <td>{{ i.time }}</td>
-
+      <td>{{ i.times }}</td>
       <td>{{ i.summ }} руб</td>
+      <td>{{ i.prim }}</td>
   </tr>
     {% endfor %}
 
