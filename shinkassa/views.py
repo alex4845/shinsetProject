@@ -25,17 +25,19 @@ def add(request):
             if a.diametr == "22.5" or a.diametr == "17,5" or a.diametr == "22,5" or a.diametr == "17.5" or a.diametr == "19.5" or a.diametr == "19,5":
                 n = [32, 16, 0, 8, 8, 8, 8, 1]
             if a.diametr == "13" or a.diametr == "14":
-                n = [8, 3, 2.5, 2, 2, 2, 2, 1]
+                n = [8, 3.5, 2.5, 2, 2, 2, 2, 1]
             if a.diametr == "15" or a.diametr == "16":
                 n = [10, 3.5, 2.5, 2.5, 2.5, 2.5, 2.5, 1]
             if a.diametr == "15c" or a.diametr == "16с":
-                n = [15, 4, 2.5, 4, 4, 3.5, 3.5, 1]
+                n = [15, 3, 2.5, 4, 4, 3.5, 3.5, 1]
             if a.diametr == "17" or a.diametr == "18":
-                n = [13, 4, 2.5, 3, 3, 3.5, 3.5, 1]
+                n = [13, 3, 2.5, 3, 3, 3.5, 3.5, 1]
             if a.diametr == "19" or a.diametr == "20":
-                n = [16, 4, 2.5, 3.5, 3.5, 4, 4, 1]
+                n = [14, 4, 2.5, 3, 3, 4, 4, 1]
             if a.diametr == "20к":
                 n = [60, 30, 2.5, 15, 15, 15, 15, 1]
+            if a.diametr == "21" or a.diametr == "22":
+                n = [15, 4.5, 2.5, 4, 4, 3.5, 3.5, 1]
             s = [a.complex, a.balance, a.count_gruz, a.sn, a.ust, a.mont, a.demont, a.cost_appworks]
             sum = 0
             for i in range(len(s)):
