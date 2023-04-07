@@ -67,7 +67,6 @@ def views(request):
         if "today" in request.POST:
             a = Worktable.objects.filter(time=date.today())
 
-
         s = 0
         for i in a:
             s = s + i.summ
