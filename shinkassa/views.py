@@ -1,5 +1,7 @@
 from datetime import date
 import datetime
+
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from shinkassa.models import Worktable
@@ -59,7 +61,8 @@ def views(request):
         date1 = request.POST["date1"]
         date2 = request.POST["date2"]
         word_s = request.POST["word_s"]
-        a = Worktable.objects.filter(time__range=(date1, date2)).filter(company__contains=word_s)
+        a = Worktable.objects.filter(time__range=(date1, date2)).filter(
+            Q(company__iregex=word_s) | Q(company__iregex=word_s))
 
         if "today" in request.POST:
             a = Worktable.objects.filter(time=date.today())
