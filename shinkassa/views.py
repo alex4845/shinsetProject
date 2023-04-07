@@ -28,7 +28,7 @@ def add(request):
                 n = [8, 3.5, 2.5, 2, 2, 2, 2, 1]
             if a.diametr == "15" or a.diametr == "16":
                 n = [10, 3.5, 2.5, 2.5, 2.5, 2.5, 2.5, 1]
-            if a.diametr == "15c" or a.diametr == "16с":
+            if a.diametr == "15с" or a.diametr == "16с" or a.diametr == "15c" or a.diametr == "15c":
                 n = [15, 3, 2.5, 4, 4, 3.5, 3.5, 1]
             if a.diametr == "17" or a.diametr == "18":
                 n = [13, 3, 2.5, 3, 3, 3.5, 3.5, 1]
