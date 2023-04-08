@@ -63,8 +63,10 @@ def views(request):
 
         date1 = request.POST["date1"]
         date2 = request.POST["date2"]
-        word_s = request.POST["word_s"]
-        a = Worktable.objects.filter(time__range=(date1, date2)).filter(
+        a = Worktable.objects.filter(time__range=(date1, date2))
+        if request.POST["word_s"]:
+            word_s = request.POST["word_s"]
+            a = Worktable.objects.filter(time__range=(date1, date2)).filter(
             Q(company__iregex=word_s) | Q(company__iregex=word_s))
 
         if "today" in request.POST:
