@@ -1,5 +1,8 @@
 from datetime import date
 import datetime
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -11,7 +14,7 @@ from .forms import WorktableForm
 
 def index(request):
     if request.method == "GET":
-        return render(request, "shinkassa/index.html",)
+        return render(request, "shinkassa/index.html")
 
 
 def add(request):
@@ -71,4 +74,38 @@ def views(request):
         for i in a:
             s = s + i.summ
         return render(request, "shinkassa/view.html", {"a": a, "s": s})
+
+def registration(request):
+    if request.method == "GET":
+        return render(request, "shinkassa/registration.html")
+
+    if request.method == "POST":
+        username = request.POST["name"]
+        password = request.POST["password"]
+        post = request.POST["post"]
+        try:
+            us = User.objects.get(username=username)
+            return render(request, "shinkassa/registration.html", {"us": us})
+        except:
+            user = User.objects.create_user(username=username, password=password, email=post)
+            login(request, user)
+            return redirect("Главная")
+
+def exit_user(request):
+    logout(request)
+    return redirect("Главная")
+
+def enter_user(request):
+
+    if request.method == "GET":
+        return render(request, "shinkassa/enter.html")
+    if request.method == "POST":
+        username = request.POST["name"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("Главная")
+        else:
+            return render(request, "shinkassa/enter.html", {"username": username})
 

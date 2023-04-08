@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <title>shinkassa</title>
 <h2>
-    <a href="{% url 'Главная' %}">Главная</a>  -------
-    <a class="nav-link active" href="{% url 'Добавление записи' %}">Добавить запись</a> ---------
-    <a class="nav-link active" href="{% url 'Просмотр' %}">Смотреть записи</a>
-    </h2>
+    <a href="{% url 'Главная' %}">Главная</a>  ----
+    <a class="nav-link active" href="{% url 'Добавление записи' %}">Добавить запись</a> ------
+    <a class="nav-link active" href="{% url 'Просмотр' %}">Смотреть записи</a>______
+    <a class="nav-link active" href="{% url 'Регистрация' %}">Регистрация</a>_____
+    <a class="nav-link active" href="{% url 'Вход' %}">Вход</a>_
+    <a class="nav-link disabled">({{ user }})</a>___
+    <a class="nav-link active" href="{% url 'Выход' %}">Выход</a>____
+
+
+
+</h2>
 </head>
 <body>
   {% block content %}
