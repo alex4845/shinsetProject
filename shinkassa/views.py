@@ -60,17 +60,21 @@ def views(request):
         return render(request, "shinkassa/view.html")
 
     if request.method == "POST":
+        if request.user.is_authenticated:
+            date1 = request.POST["date1"]
+            date2 = request.POST["date2"]
+            a = Worktable.objects.filter(time__range=(date1, date2))
+            if request.POST["word_s"]:
+                word_s = request.POST["word_s"]
+                a = Worktable.objects.filter(time__range=(date1, date2)).filter(
+                Q(company__iregex=word_s) | Q(company__iregex=word_s))
 
-        date1 = request.POST["date1"]
-        date2 = request.POST["date2"]
-        a = Worktable.objects.filter(time__range=(date1, date2))
-        if request.POST["word_s"]:
-            word_s = request.POST["word_s"]
-            a = Worktable.objects.filter(time__range=(date1, date2)).filter(
-            Q(company__iregex=word_s) | Q(company__iregex=word_s))
+            if "today" in request.POST:
+                a = Worktable.objects.filter(time=date.today())
+        else:
+            b = "Доступ предоставляется для зарегистрированных пользователей"
+            return render(request, "shinkassa/view.html", {"b": b})
 
-        if "today" in request.POST:
-            a = Worktable.objects.filter(time=date.today())
 
         s = 0
         for i in a:

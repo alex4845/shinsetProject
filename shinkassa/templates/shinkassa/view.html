@@ -7,21 +7,24 @@
 {% block content %}
 
 <h1>Просмотр и поиск записей за выбранный период</h1>
-<h3>
+
 <form class="d-flex" method="post">
         {%  csrf_token %}
-        <p>C какой даты смотреть__<input type="date" placeholder="выберите дату" name="date1"></p>
-        <p>По какую дату смотреть__<input type="date" placeholder="выберите дату" name="date2"></p>
-        <p>Поиск по фирме__<input type="text" placeholder="введите название фирмы" name="word_s"></p>
+        <p>C какой даты смотреть__<input class="form-control me-2" type="date" placeholder="выберите дату" name="date1"></p>
+        <p>По какую дату смотреть__<input class="form-control me-2" type="date" placeholder="выберите дату" name="date2"></p>
+        <p>Поиск по фирме__<input class="form-control me-2" type="text" placeholder="введите название фирмы" name="word_s"></p>
 
-        <input type="submit" value="Посмотреть за выбранный период" name="period">
-        <input type="submit" value="Посмотреть за сегодня" name="today">
+        <input class="btn btn-outline-success" type="submit" value="Посмотреть за выбранный период" name="period">
+        <input class="btn btn-outline-success" type="submit" value="Посмотреть за сегодня" name="today">
 
     </form>
+{% if b %}
+<h3>{{ b }}</h3>
 
-</h3>
+{% endif %}
 
-<table>
+{% if a %}
+<table class="d-flex">
 
   <tr>
       <th>_______Фирма_______</th>
@@ -95,6 +98,8 @@
 
 </table>
 
-<h2>___________________________________________________________________Общая сумма {{ s }}</h2>
+<h2>______________________________________________________________Общая сумма {{ s }}</h2>
+
+{% endif %}
 
 {% endblock %}
