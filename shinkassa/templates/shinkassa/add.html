@@ -1,3 +1,4 @@
+
 {% extends 'shinkassa/base.html'%}
 
 {% block title %}
@@ -6,16 +7,20 @@
 
 {% block content %}
 
-<h1>Добавление новой записи</h1>
+<h2>Добавление новой записи</h2>
 
-<form method="post" class="btn.btn-outline-secondary">
+<form method="post" class="btn.btn-outline-secondary" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-outline-success" type="submit">ЗАПИСАТЬ</button>
+    <div class="button-container">
+    <button class="btn btn-outline-success" type="submit" name="pred_summ">Предварительная сумма</button>
+    <button class="btn btn-outline-success" type="submit" name="write">ЗАПИСАТЬ</button>
+    </div>
 </form>
 
+
     {% if b %}
-        <h1> {{ b }}</h1>
+        <h1> {{ b }} {{ sum }}</h1>
     {% endif %}
 
 

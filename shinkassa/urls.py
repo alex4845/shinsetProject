@@ -8,4 +8,4 @@ urlpatterns = [
     path("registration", registration, name="Регистрация"),
     path("exit_user", exit_user, name="Выход"),
     path("enter_user", enter_user, name="Вход"),
-]
+    ]

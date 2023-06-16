@@ -6,6 +6,12 @@
 
 {% block content %}
 
+
+
+
+
+
+
 <h1>Просмотр и поиск записей за выбранный период</h1>
 
 <form class="d-flex" method="post">
@@ -24,17 +30,37 @@
 {% endif %}
 
 {% if a %}
-<table class="d-flex">
+	<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+	<script>
+		function exportToExcel() {
+			// Получаем таблицу по ее ID
+			var table = document.getElementById("myTable");
+
+			// Создаем новую книгу Excel
+			var workbook = XLSX.utils.book_new();
+
+			// Создаем новый лист Excel
+			var sheet = XLSX.utils.table_to_sheet(table);
+
+			// Добавляем лист в книгу
+			XLSX.utils.book_append_sheet(workbook, sheet, "Данные");
+
+			// Сохраняем книгу в файл Excel
+			XLSX.writeFile(workbook, "данные.xlsx");
+		}
+	</script>
+
+<table class="d-flex" id="myTable">
 
   <tr>
       <th>_______Фирма_______</th>
       <th>_Машина___</th>
-      <th>___Номер____</th>
+      <th>_Номер_____</th>
       <th>_Диск_</th>
       <th>_______________Что делали_______________ </th>
-      <th>____Дата___</th>
+      <th>____Дата_____</th>
       <th>Время__</th>
-      <th>___Сумма__</th>
+      <th>_Сумма__</th>
       <th>Примечание</th>
   </tr>
 {% for i in a %}
@@ -99,7 +125,10 @@
 </table>
 
 <h2>______________________________________________________________Общая сумма {{ s }}</h2>
+<button class="btn btn-outline-success" type="button" onclick="exportToExcel()">Сохранить в Excel</button>
 
 {% endif %}
+
+
 
 {% endblock %}

@@ -48,14 +48,22 @@ def add(request):
             for i in range(len(s)):
                 if s[i]:
                     sum = sum + s[i] * n[i]
+
             a.summ = sum
             a.time = date.today()
             a.times = datetime.datetime.now().time().strftime("%H:%M")
-            a.save()
-            b = "ЗАПИСАНО!"
-            return render(request, "shinkassa/add.html", {"form": form, "b": b, "a": a})
+
+            if "write" in request.POST:
+                a.save()
+                b = "ЗАПИСАНО!"
+                return render(request, "shinkassa/add.html", {"form": form, "b": b, "a": a})
+            elif "pred_summ" in request.POST:
+                b = "Предварительная сумма, руб: "
+                return render(request, "shinkassa/add.html", {"form": form, "b": b, "sum": sum})
+
 
 def views(request):
+
     if request.method == "GET":
         return render(request, "shinkassa/view.html")
 
@@ -64,6 +72,7 @@ def views(request):
             date1 = request.POST["date1"]
             date2 = request.POST["date2"]
             a = Worktable.objects.filter(time__range=(date1, date2))
+
             if request.POST["word_s"]:
                 word_s = request.POST["word_s"]
                 a = Worktable.objects.filter(time__range=(date1, date2)).filter(
@@ -71,14 +80,15 @@ def views(request):
 
             if "today" in request.POST:
                 a = Worktable.objects.filter(time=date.today())
+
         else:
             b = "Доступ предоставляется для зарегистрированных пользователей"
             return render(request, "shinkassa/view.html", {"b": b})
 
-
         s = 0
         for i in a:
             s = s + i.summ
+
         return render(request, "shinkassa/view.html", {"a": a, "s": s})
 
 def registration(request):
