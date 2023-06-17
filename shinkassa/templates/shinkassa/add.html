@@ -13,14 +13,14 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div class="button-container">
-    <button class="btn btn-outline-success" type="submit" name="pred_summ">Предварительная сумма</button>
-    <button class="btn btn-outline-success" type="submit" name="write">ЗАПИСАТЬ</button>
+    <button class="btn btn-outline-success" type="submit" name="pred_summ"><strong>Предварительная сумма</strong></button>
+    <button class="btn btn-outline-success" type="submit" name="write"><strong>ЗАПИСАТЬ</strong></button>
     </div>
 </form>
 
 
     {% if b %}
-        <h1> {{ b }} {{ sum }}</h1>
+        <h1> {{ sum }} {{ b }} </h1>
     {% endif %}
 
 

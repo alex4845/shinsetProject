@@ -58,7 +58,7 @@ def add(request):
                 b = "ЗАПИСАНО!"
                 return render(request, "shinkassa/add.html", {"form": form, "b": b, "a": a})
             elif "pred_summ" in request.POST:
-                b = "Предварительная сумма, руб: "
+                b = "руб"
                 return render(request, "shinkassa/add.html", {"form": form, "b": b, "sum": sum})
 
 
